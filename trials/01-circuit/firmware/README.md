@@ -1,7 +1,7 @@
 # 段階2・3の使い捨てファーム
 
 段階2は [bom.md の「組む順番と電流制限」](../kicad/stage2-one-wheel/specs/bom.md#組む順番と電流制限) の A〜H、
-段階3は組み終えた回路を確かめる [stage3-procedure.md](../stage3-procedure.md) の段 0〜7 で、
+段階3は組み終えた回路を確かめる [stage3-procedure.md](../stage3-procedure.md) の段 0〜8（8 は LED の口）で、
 ESP32 に書き込むプログラム。結果は [notes.md](../notes.md) に書く。
 配線と測る値を含めた段ごとの手順は [stage2-procedure.md](../stage2-procedure.md) と [stage3-procedure.md](../stage3-procedure.md)。
 
@@ -18,8 +18,9 @@ ESP32 に書き込むプログラム。結果は [notes.md](../notes.md) に書�
 | 段階3 の 2〜5 | [i_bench](i_bench/i_bench.ino)（f_bench を3輪に。シリアルで選んだ輪、または3輪全部をつまみで回す） | ビルド確認済み |
 | 段階3 の 6 | [k_teleop](k_teleop/k_teleop.ino)（g_teleop を3輪に。十字キーの左右で輪を選ぶ） | ビルド確認済み |
 | 段階3 の 7 | h_vbat（段階2と同じ） | ビルド確認済み |
+| 段階3 の 8 | [l_led](l_led/l_led.ino)（LED の口。GPIO27 の H・L と、WS2812B の色・明るさをシリアルで選ぶ） | ビルド確認済み（2026-11-20） |
 
-A〜D と h_vbat はモータにつながる GPIO（19・23・21・25・22・26）に触らない。モータを動かすのは f_bench・g_teleop・i_bench・k_teleop だけ。
+A〜D・h_vbat・l_led はモータにつながる GPIO（19・23・21・25・22・26）に触らない。モータを動かすのは f_bench・g_teleop・i_bench・k_teleop だけ。
 
 ## 環境
 
@@ -52,6 +53,10 @@ A〜D と h_vbat はモータにつながる GPIO（19・23・21・25・22・26�
 | F・G-1・G-2 | `pot`・`duty`・`count`・`ready`。送る文字 `f`・`b`・`s`・`r` | つまみを 0 に戻すまで出さない。前進で赤（G では正転で `count` が増える）、`b` で緑。動いている間は向きを変えない。`s` ですぐ止まる | 手順書の F・G の記録 |
 | 段階3 の 2〜5 | `wheel`・`count`（輪0/輪1/輪2）。送る文字 `0`・`1`・`2`・`a`・`f`・`b`・`s`・`r` | 選んだ輪だけが回る。正転で、その輪の `count` が増える | 手順書の段 2〜5 の記録 |
 | 段階3 の 6 | `sel`・`duty`・`count`・`cps`・`gap` | 十字キーで選んだ輪だけが回る。止める仕組みが3輪とも効く | 手順書の段 6 の記録 |
+| 段階3 の 8 | `v12`・`mode`・`gpio27`・`n`・`color`・`bright`・`est`。送る文字 `h`・`l`・`s`、`1`〜`8`・`r`・`g`・`b`・`w`・`c`・`x`・`+`・`-` | `h` で J10-2 が 4.5V 以上、`l` で 0.1V 以下。`c` で J10 に近い LED から赤 → 緑 → 青。12V が無いと信号を出さない | 手順書の段 8 の記録 |
+
+- l_led は、12V が来ている（GPIO32 の読みで 8.0V 以上）と分かって 1 秒たつまで LED に信号を出さない。LED の合計は 400mA まで（計算で明るさを抑える）。G32 の分圧（段 7）がつながっていること。
+- l_led の信号は ESP32 の RMT（LED 用の信号を作る回路）で作る。ライブラリは足していない（ボードパッケージに入っている ESP-IDF の `driver/rmt.h` を使う）。
 
 - C では R10・R11 は無くてもよい（12V が無いので）。モータの赤・白はどこにもつながない。段階3の段 2（手で数える）も同じ。
 - C の「正転」は段階1の E-2 で決めた向き: **軸側（タイヤ側）から見て時計回り**（[notes.md](../notes.md) の記録）。
