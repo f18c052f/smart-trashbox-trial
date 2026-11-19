@@ -3,6 +3,8 @@
 投げられたゴミの落下地点を予測し、床を走るゴミ箱が受け止めるシステムのトライアル用リポジトリ。
 入口は [docs/README.md](docs/README.md)、計画は [docs/trial-plan.md](docs/trial-plan.md)。
 
+**持ち主への返答は、短い返事やまとめも含めて、いつも日本語で書く。**
+
 ## ドキュメントの置き方
 
 - `docs/inherited/` は旧リポジトリ `smart-trashbox-tribute` から引き継いだ記録。**書き換えも追加もしない。**
