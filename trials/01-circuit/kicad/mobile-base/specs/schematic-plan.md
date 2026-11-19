@@ -1,7 +1,7 @@
 # Schematic plan: mobile-base（段階3 3輪ぶんの完成形）
 
 - 部品表: [bom.md](./bom.md)（bom-reviewer APPROVED 3回目、持ち主 OK 2026-11-15。LED の口を足したものは bom-reviewer APPROVED 3回目、持ち主 OK 2026-11-19）
-- 回路図: `C:\Users\user\repos\smart-trashbox-trial\trials\01-circuit\kicad\mobile-base\mobile-base.kicad_sch`（段階3は 2026-11-15 に描き終えた。LED の口はまだ描いていない）
+- 回路図: `C:\Users\user\repos\smart-trashbox-trial\trials\01-circuit\kicad\mobile-base\mobile-base.kicad_sch`（段階3は 2026-11-15 に描き終えた。LED の口は 2026-11-20 に描いた。ERC 0件）
 - 自作記号: `mobile-base:ESP32-DevKitC-38`、`mobile-base:AE-TB67H450`、`mobile-base:BP5293-50`、`mobile-base:JGB37-520`。LED の口で `mobile-base:SN74AHCT125N` を足した（2026-11-19）。
   - ライブラリは `trials/01-circuit/kicad/lib/mobile-base.kicad_sym`。プロジェクトの `sym-lib-table` に `${KIPRJMOD}/../lib/mobile-base.kicad_sym` で登録した（2026-11-15）。
   - `place_component` には `symbol_lib_path` = `C:\Users\user\repos\smart-trashbox-trial\trials\01-circuit\kicad\lib\mobile-base.kicad_sym` を渡す。
