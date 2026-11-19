@@ -48,13 +48,16 @@
   - 段階2で分かったこと（詳しくは `stage2-one-wheel/specs/schematic-plan.md`）: 文字の向きは部品の最後の回転と同じになる
     （縦のダイオードは 0° で置いて 270° に回すと文字が横に出る）。ラベルだけにつながる短い線はラベルの位置で終える
     （線の先が空くと ERC の警告になる）。部品の外形（ピンの先まで）どうしを触れさせない（KiCad が文字を二度描く）。
+  - 段階3で分かったこと（詳しくは `notes.md` の「段階3の回路図」）: 回路図のファイルは `create_project`・`create_schematic` で作る。
+    KiCad 10 の画面で作ったファイルに描くと、空の Datasheet が `~` のまま読まれ、JGB37-520 が `lib_symbol_mismatch` になる。
 - ERC のレポートなど書き出したものの置き場は、残す必要があるときだけ決める。試しに流すだけなら一時フォルダに出す。
 
 ## ファーム
 
-- 段階2の使い捨てのファームは `trials/01-circuit/firmware/<順>_<名前>/<順>_<名前>.ino`（入口は同じ場所の `README.md`）。
+- 段階2・3の使い捨てのファームは `trials/01-circuit/firmware/<順>_<名前>/<順>_<名前>.ino`（入口は同じ場所の `README.md`）。
 - Arduino IDE 2（winget で入れた。`%LOCALAPPDATA%\Microsoft\WinGet\Packages\ArduinoSA.IDE.stable_*\`）、ボードは
   `esp32-bluepad32:esp32:esp32`（esp32_bluepad32 4.1.0 の ESP32 Dev Module。arduino-esp32 2.0 系 / ESP-IDF 4.4 の API で書く）。
 - 渡す前に、IDE に入っている `resources\app\lib\backend\resources\arduino-cli.exe` を
   `--config-file %USERPROFILE%\.arduinoIDE\arduino-cli.yaml` 付きで使い、ビルドが通ることを確かめる。出力は一時フォルダへ。
-- 書き込みは持ち主が IDE で行う。モータにつながる GPIO19・GPIO23 を動かすのは F・G のプログラムだけ。
+- 書き込みは持ち主が IDE で行う。モータにつながる GPIO（19・23・21・25・22・26）を動かすのは
+  f_bench・g_teleop・i_bench・k_teleop だけ。
