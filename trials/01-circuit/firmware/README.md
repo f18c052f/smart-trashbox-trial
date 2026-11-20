@@ -18,7 +18,7 @@ ESP32 に書き込むプログラム。結果は [notes.md](../notes.md) に書�
 | 段階3 の 2〜5 | [i_bench](i_bench/i_bench.ino)（f_bench を3輪に。シリアルで選んだ輪、または3輪全部をつまみで回す） | ビルド確認済み |
 | 段階3 の 6 | [k_teleop](k_teleop/k_teleop.ino)（g_teleop を3輪に。十字キーの左右で輪を選ぶ） | ビルド確認済み |
 | 段階3 の 7 | h_vbat（段階2と同じ） | ビルド確認済み |
-| 段階3 の 8 | [l_led](l_led/l_led.ino)（LED の口。GPIO27 の H・L と、WS2812B の色・明るさをシリアルで選ぶ） | ビルド確認済み（2026-11-20） |
+| 段階3 の 8 | [l_led](l_led/l_led.ino)（LED の口。GPIO27 の H・L と、WS2812B の色・明るさをシリアルで選ぶ） | ビルド確認済み（2026-11-20）・段 8 合格 |
 
 A〜D・h_vbat・l_led はモータにつながる GPIO（19・23・21・25・22・26）に触らない。モータを動かすのは f_bench・g_teleop・i_bench・k_teleop だけ。
 
