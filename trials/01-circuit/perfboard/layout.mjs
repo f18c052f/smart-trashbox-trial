@@ -167,7 +167,7 @@ bw('stub', [24, 17], [24, 16]);                      // NT1 の口
 part('TPS', { 1: [26, 16] }, { kind: 'tp', label: 'TP-S', net: 'SGND', note: 'SGND を測る点。回路図には描かない' });
 bw('stub', [26, 17], [26, 16]);
 part('NT1', { 1: [5, 6], 2: [24, 16] }, {
-  kind: 'nt', note: 'GND-STAR と SGND をつなぐ1本だけの線（被覆つき AWG22）。半田付けの最後に付ける',
+  kind: 'nt', note: 'GND-STAR と SGND をつなぐ1本だけの線（被覆つき AWG22）。SGND の側の端は、procedure.md の段 0 で PGND と SGND が鳴らないことを確かめてから付ける',
   route: [[5, 5.55], [12.2, 5.55], [12.2, 11.8], [23.6, 11.8], [23.6, 15.6]],
 });
 

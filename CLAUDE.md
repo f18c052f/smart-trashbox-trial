@@ -56,7 +56,7 @@
 
 ## ユニバーサル基板
 
-- 段階3を載せる基板（9×15cm 1枚）の計画は `trials/01-circuit/perfboard/`（入口は `plan.md`、半田付けの順番は `procedure.md`）。
+- 段階3を載せる基板（9×15cm 1枚）の計画は `trials/01-circuit/perfboard/`（入口は `plan.md`、半田付けと組み上がってからの確かめ方は `procedure.md`）。
 - 配置は `layout.mjs` に穴の座標で書く。`node layout.mjs` で図（`layout-top.svg`・`layout-back.svg`）と配線表（`wires.md`）を書き出し、
   回路図のネットリスト（`nets.json`）と照らし合わせる。誤りが 0 件になるまで直す。SVG と `wires.md` は手で直さない。
 - 回路図を変えたら、ネットリストを kicadsexpr 形式で一時フォルダに書き出し、`node layout.mjs --import <.net>` で `nets.json` を作り直してから検査を流す。
