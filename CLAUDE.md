@@ -54,6 +54,14 @@
     KiCad 10 の画面で作ったファイルに描くと、空の Datasheet が `~` のまま読まれ、JGB37-520 が `lib_symbol_mismatch` になる。
 - ERC のレポートなど書き出したものの置き場は、残す必要があるときだけ決める。試しに流すだけなら一時フォルダに出す。
 
+## ユニバーサル基板
+
+- 段階3を載せる基板（9×15cm 1枚）の計画は `trials/01-circuit/perfboard/`（入口は `plan.md`、半田付けの順番は `procedure.md`）。
+- 配置は `layout.mjs` に穴の座標で書く。`node layout.mjs` で図（`layout-top.svg`・`layout-back.svg`）と配線表（`wires.md`）を書き出し、
+  回路図のネットリスト（`nets.json`）と照らし合わせる。誤りが 0 件になるまで直す。SVG と `wires.md` は手で直さない。
+- 回路図を変えたら、ネットリストを kicadsexpr 形式で一時フォルダに書き出し、`node layout.mjs --import <.net>` で `nets.json` を作り直してから検査を流す。
+- 図を目で確かめるときは、Chrome の画面なし起動（`--headless=new --screenshot`）で SVG を PNG にして見る。出力は一時フォルダへ。
+
 ## ファーム
 
 - 段階2・3の使い捨てのファームは `trials/01-circuit/firmware/<順>_<名前>/<順>_<名前>.ino`（入口は同じ場所の `README.md`）。
